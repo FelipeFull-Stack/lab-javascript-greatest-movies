@@ -9,12 +9,17 @@ function getAllDirectors(moviesArray) {
     return array;
 }
 
+
+
+
+
+
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
 function teste(valor) {
     return valor.genre === 'Drama';
 }
 function howManyMovies(moviesArray) {
-    let cont = 0, count = 0, contSS = 0;
+    let cont = 0, count = 0, contSS = 0, contDrama = 0;
     if (moviesArray === '' || moviesArray.length === 0) {
         return 0;
     }
@@ -27,7 +32,9 @@ function howManyMovies(moviesArray) {
         if (moviesArray[i].director === 'Steven Spielberg') {
             contSS++;
         }
+        contDrama += moviesArray[i].genre.filter(x => x === 'Drama').length;
     }
+
     if (moviesArray.find(teste) === true) {
         count++;
     }
@@ -36,6 +43,11 @@ function howManyMovies(moviesArray) {
     }
     return cont;
 }
+
+
+
+
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
@@ -54,9 +66,14 @@ function scoresAverage(moviesArray) {
     return +(filtro.toFixed(2));
 }
 
+
+
+
+
+
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    let sum = 0, filtro = 0;
+    let sum = 0, mediaDrama = 0, sumDrama = 0, mediaSumDrama = 0, contador = 0;
     if (moviesArray.length === 1) {
         return moviesArray.score;
     }
@@ -65,33 +82,51 @@ function dramaMoviesScore(moviesArray) {
             if (moviesArray[i].genre[j] === 'Drama') {
                 sum += moviesArray[i].score;
             }
-            if (moviesArray[i].genre[j] === 'Drama' && moviesArray[i].genre.length === 1) {
-                return moviesArray[i].genre[j];
-            }
+        }
+        if (moviesArray[i].genre.length === 1 && moviesArray[i].genre === 'Drama') {
+            contador++;
+            sumDrama += moviesArray[i].score;
         }
     }
-    if (moviesArray.find(teste) !== true) {
-        return 0;
+    if (moviesArray.length === 1) {
+        return moviesArray.score;
     }
-    filtro = sum / moviesArray.length;
-    return +(filtro.toFixed(2));
+    mediaSumDrama = sumDrama / contador;
+    mediaSumDrama = +(mediaSumDrama.toFixed(2));
+    mediaDrama = sum / moviesArray.length;
+    return +(mediaDrama.toFixed(2));
+
+
 }
+
+
+
+
+
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-    let array = [];
+    let array = [], array2 = [];
     let str = "";
     for (let i = 0; i < moviesArray.length; i++) {
 
     }
+    array = moviesArray;
+    return array.sort();
+}
 
-    return array;
+
+
+
+function teste(a, b) {
+    return b - a;
 }
 
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-    let array = [], array2 = [], array3 = [];
+    let array = [], array2 = [];
     let str = "";
+    let cont = 0;
     for (let i = 0; i < moviesArray.length; i++) {
         str = moviesArray[i].title;
         array[i] = str;
@@ -102,22 +137,44 @@ function orderAlphabetically(moviesArray) {
         }
         return array2;
     }
-    for (let i = 0; i < moviesArray.length; i++) {
-        
-    }
     return array.sort();
 }
 
+
+
+
+
+
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
+    let str = "", teste = "";
+    let soma = 0;
     let array = [];
-    let str = "";
-    for (let i = 0; i < moviesArray.length; i++) {
 
+    for(let i=0; i<moviesArray.length; i++){
+      teste[i] = moviesArray[i].duration;
+      for(let j=0; j<teste.length; j++){
+          if(typeof teste[j] === 'number'){
+          str = teste[j];
+          if(j===0){
+            soma += str * 60;
+          }
+          if(j > 0 && j < 3){
+            soma += str;
+          }
+        }
+      }
     }
-
+    if(soma > 0){
+        return soma;
+    }
     return array;
 }
+
+
+
+
+
 
 // BONUS - Iteration 8: Best yearly score average - Best yearly score average
 function bestYearAvg(moviesArray) {
