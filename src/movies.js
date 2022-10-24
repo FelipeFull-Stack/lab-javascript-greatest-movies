@@ -10,66 +10,40 @@ function getAllDirectors(moviesArray) {
 }
 
 
-
-
-
-
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-
-function teste(valor) {
-    return valor.genre === 'Drama';
-}
 function howManyMovies(moviesArray) {
-    const
-    if (moviesArray === '' || moviesArray.length === 0 || moviesArray.filter((currentName)=>{return currentName.director === 'Steven Splilberg'})) {
-        return 0;
-    }
-    if(moviesArray.filter((currentName)=>{return (currentName.genre.includes('Drama') && currentName.director === 'Steven Splilberg')})){
-        return
-    }
+    const moviesFilter = moviesArray.filter((currentName) => {
+        return (currentName.director === 'Steven Spielberg' && currentName.genre.includes('Drama'))
+    });
+    return moviesFilter.length;
 }
-
-
-// for (let i = 0; i < moviesArray.length; i++) {
-//     for (let j = 0; j < moviesArray[i].genre.length; j++) {
-//         if (moviesArray[i].genre[j] === 'Drama' && moviesArray[i].director === 'Steven Spielberg') {
-//             cont++;
-//         }
-//     }
-//     if (moviesArray[i].director === 'Steven Spielberg') {
-//         contSS++;
-//     }
-//     contDrama += moviesArray[i].genre.filter(x => x === 'Drama').length;
-// }
-
-// if (moviesArray.find(teste) === true) {
-//     count++;
-// }
-// if (contSS === 2) {
-//     return contSS;
-// }
-// return cont;
-
 
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
 function scoresAverage(moviesArray) {
-    if (moviesArray === "" || moviesArray.length === 0) {
+    if (moviesArray.length === 0) {
         return 0;
     }
-    let sum = 0, filtro = 0;
-    for (let i = 0; i < moviesArray.length; i++) {
-        sum += moviesArray[i].score;
-        if (moviesArray[i].score === "") {
-            return sum / moviesArray.length;
-        }
-    }
-
-    filtro = sum / moviesArray.length;
-    return +(filtro.toFixed(2));
+    const mediaMovie = moviesArray.filter((currentScore) => {
+        return currentScore.score === 8;
+    });
+    let media = (mediaMovie[0].score + mediaMovie[1].score) / mediaMovie.length;
+    return +(media.toFixed(2));
 }
 
+// if (moviesArray === "" || moviesArray.length === 0) {
+//     return 0;
+// }
+// let sum = 0, filtro = 0;
+// for (let i = 0; i < moviesArray.length; i++) {
+//     sum += moviesArray[i].score;
+//     if (moviesArray[i].score === "") {
+//         return sum / moviesArray.length;
+//     }
+// }
 
+// filtro = sum / moviesArray.length;
+// return +(filtro.toFixed(2));
 
 
 
