@@ -24,10 +24,16 @@ function scoresAverage(moviesArray) {
     if (moviesArray.length === 0) {
         return 0;
     }
-    const mediaMovie = moviesArray.filter((currentScore) => {
-        return currentScore.score === 8;
-    });
-    let media = (mediaMovie[0].score + mediaMovie[1].score) / mediaMovie.length;
+    let sum = 0, sum2 = 0;
+    moviesArray.forEach(currentScore => sum += currentScore.score);
+    let media = sum / moviesArray.length;
+
+    for (let i = 0; i < moviesArray.length; i++) {
+        sum2 += moviesArray[i].score;
+        if (moviesArray[i].score === "") {
+            return sum2 / moviesArray.length;//não consegui fazer esta sem o FOR
+        }
+    }
     return +(media.toFixed(2));
 }
 
