@@ -15,37 +15,40 @@ function getAllDirectors(moviesArray) {
 
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
+
 function teste(valor) {
     return valor.genre === 'Drama';
 }
 function howManyMovies(moviesArray) {
-    let cont = 0, count = 0, contSS = 0, contDrama = 0;
-    if (moviesArray === '' || moviesArray.length === 0) {
+    const
+    if (moviesArray === '' || moviesArray.length === 0 || moviesArray.filter((currentName)=>{return currentName.director === 'Steven Splilberg'})) {
         return 0;
     }
-    for (let i = 0; i < moviesArray.length; i++) {
-        for (let j = 0; j < moviesArray[i].genre.length; j++) {
-            if (moviesArray[i].genre[j] === 'Drama' && moviesArray[i].director === 'Steven Spielberg') {
-                cont++;
-            }
-        }
-        if (moviesArray[i].director === 'Steven Spielberg') {
-            contSS++;
-        }
-        contDrama += moviesArray[i].genre.filter(x => x === 'Drama').length;
+    if(moviesArray.filter((currentName)=>{return (currentName.genre.includes('Drama') && currentName.director === 'Steven Splilberg')})){
+        return
     }
-
-    if (moviesArray.find(teste) === true) {
-        count++;
-    }
-    if (contSS === 2) {
-        return contSS;
-    }
-    return cont;
 }
 
 
+// for (let i = 0; i < moviesArray.length; i++) {
+//     for (let j = 0; j < moviesArray[i].genre.length; j++) {
+//         if (moviesArray[i].genre[j] === 'Drama' && moviesArray[i].director === 'Steven Spielberg') {
+//             cont++;
+//         }
+//     }
+//     if (moviesArray[i].director === 'Steven Spielberg') {
+//         contSS++;
+//     }
+//     contDrama += moviesArray[i].genre.filter(x => x === 'Drama').length;
+// }
 
+// if (moviesArray.find(teste) === true) {
+//     count++;
+// }
+// if (contSS === 2) {
+//     return contSS;
+// }
+// return cont;
 
 
 
@@ -151,21 +154,21 @@ function turnHoursToMinutes(moviesArray) {
     let soma = 0;
     let array = [];
 
-    for(let i=0; i<moviesArray.length; i++){
-      teste[i] = moviesArray[i].duration;
-      for(let j=0; j<teste.length; j++){
-          if(typeof teste[j] === 'number'){
-          str = teste[j];
-          if(j===0){
-            soma += str * 60;
-          }
-          if(j > 0 && j < 3){
-            soma += str;
-          }
+    for (let i = 0; i < moviesArray.length; i++) {
+        teste[i] = moviesArray[i].duration;
+        for (let j = 0; j < teste.length; j++) {
+            if (typeof teste[j] === 'number') {
+                str = teste[j];
+                if (j === 0) {
+                    soma += str * 60;
+                }
+                if (j > 0 && j < 3) {
+                    soma += str;
+                }
+            }
         }
-      }
     }
-    if(soma > 0){
+    if (soma > 0) {
         return soma;
     }
     return array;
