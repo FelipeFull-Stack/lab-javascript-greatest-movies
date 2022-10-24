@@ -56,32 +56,34 @@ function scoresAverage(moviesArray) {
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore(moviesArray) {
-    let sum = 0, mediaDrama = 0, sumDrama = 0, mediaSumDrama = 0, contador = 0;
-    if (moviesArray.length === 1) {
-        return moviesArray.score;
+    const moviesFilter = moviesArray.filter((currentGenre) => {
+        return currentGenre.genre.includes('Drama');
+    });
+    let sum=0, media;
+    moviesFilter.forEach(currentScore => sum += currentScore.score);
+    media = sum / moviesFilter.length;
+    if(moviesFilter.length === 0){
+        return 0;
     }
-    for (let i = 0; i < moviesArray.length; i++) {
-        for (let j = 0; j < moviesArray[i].genre.length; j++) {
-            if (moviesArray[i].genre[j] === 'Drama') {
-                sum += moviesArray[i].score;
-            }
-        }
-        if (moviesArray[i].genre.length === 1 && moviesArray[i].genre === 'Drama') {
-            contador++;
-            sumDrama += moviesArray[i].score;
-        }
-    }
-    if (moviesArray.length === 1) {
-        return moviesArray.score;
-    }
-    mediaSumDrama = sumDrama / contador;
-    mediaSumDrama = +(mediaSumDrama.toFixed(2));
-    mediaDrama = sum / moviesArray.length;
-    return +(mediaDrama.toFixed(2));
-
-
+    return +(media.toFixed(2));
 }
-
+//tava incompleto sem o Filter, Map ou forEach
+// let sum = 0, mediaDrama = 0, sumDrama = 0, mediaSumDrama = 0, contador = 0;
+// for (let i = 0; i < moviesArray.length; i++) {
+//     for (let j = 0; j < moviesArray[i].genre.length; j++) {
+//         if (moviesArray[i].genre[j] === 'Drama') {
+//             sum += moviesArray[i].score;
+//         }
+//     }
+//     if (moviesArray[i].genre.length === 1 && moviesArray[i].genre === 'Drama') {
+//         contador++;
+//         sumDrama += moviesArray[i].score;
+//     }
+// }
+// mediaSumDrama = sumDrama / contador;
+// mediaSumDrama = +(mediaSumDrama.toFixed(2));
+// mediaDrama = sum / moviesArray.length;
+// return +(mediaDrama.toFixed(2));
 
 
 
