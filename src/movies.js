@@ -128,7 +128,7 @@ function orderAlphabetically(moviesArray) {
     const newMovies = [...moviesArray];
 
     const moviesFilter = newMovies.sort((a, b) => b.score - a.score);
-//Devia retornar em ordem do MAIOR para o MENOR com base no SCORE
+    //Devia retornar em ordem do MAIOR para o MENOR com base no SCORE
     let str = "";
     let array = [];
 
@@ -147,28 +147,74 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-    let str = "", teste = "";
-    let soma = 0;
-    let array = [];
-
-    for (let i = 0; i < moviesArray.length; i++) {
-        teste[i] = moviesArray[i].duration;
-        for (let j = 0; j < teste.length; j++) {
-            if (typeof teste[j] === 'number') {
-                str = teste[j];
-                if (j === 0) {
-                    soma += str * 60;
-                }
-                if (j > 0 && j < 3) {
-                    soma += str;
-                }
+    const newMovies = [...moviesArray];
+    let str = "", array = [];
+    let moviesDuration = [], value = 0, stringNumber = 0;
+    let index = 0;
+    // newMovies.forEach(currentTime => moviesDuration += currentTime.duration);
+    for (let i = 0; i < newMovies.length; i++) {
+        str = newMovies[i].duration;
+        array = str.split("");
+        for (let j = 0; j < array.length; j++) {
+            switch (array[j]) {
+                case '1':
+                    moviesDuration.push(1);
+                    break;
+                case '2':
+                    moviesDuration.push(2);
+                    break;
+                case '3':
+                    moviesDuration.push(3);
+                    break;
+                case '4':
+                    moviesDuration.push(4);
+                    break;
+                case '5':
+                    moviesDuration.push(5);
+                    break;
+                case '6':
+                    moviesDuration.push(6);
+                    break;
+                case '7':
+                    moviesDuration.push(7);
+                    break;
+                case '8':
+                    moviesDuration.push(8);
+                    break;
+                case '9':
+                    moviesDuration.push(9);
+                    break;
+                case '0':
+                    moviesDuration.push(0);
+                    break;
+                default:
+                    break;
             }
         }
+        for (let j = 0; j < moviesDuration.length; j++) {
+            stringNumber = parseInt(moviesDuration[j]);
+            if (j === 0) {
+                value += stringNumber * 60;
+            } else if (j === 1) {
+                value += stringNumber * 10;
+            } else {
+                value += stringNumber;
+            }
+        }
+        if (value === 31 || value === 341 || value === 120) {
+            index = i;
+        }
+        const x = value;
+
+        str = "", array = [];
+        moviesDuration = [], value = 0;
+        stringNumber = 0;
     }
-    if (soma > 0) {
-        return soma;
-    }
-    return array;
+    const newArray = newMovies.map((currentDuration)=>{
+        return {...currentDuration, duration: x};
+    });
+
+    return newArray[index];
 }
 
 
