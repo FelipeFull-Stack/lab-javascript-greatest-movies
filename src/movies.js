@@ -59,10 +59,10 @@ function dramaMoviesScore(moviesArray) {
     const moviesFilter = moviesArray.filter((currentGenre) => {
         return currentGenre.genre.includes('Drama');
     });
-    let sum=0, media;
+    let sum = 0, media;
     moviesFilter.forEach(currentScore => sum += currentScore.score);
     media = sum / moviesFilter.length;
-    if(moviesFilter.length === 0){
+    if (moviesFilter.length === 0) {
         return 0;
     }
     return +(media.toFixed(2));
@@ -91,13 +91,33 @@ function dramaMoviesScore(moviesArray) {
 
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
-    let array = [], array2 = [];
-    let str = "";
-    for (let i = 0; i < moviesArray.length; i++) {
+    const moviesFilter = [...moviesArray];
+    const moviesANO = moviesFilter.sort((a, b) => {
+        if (a.year > b.year) {
+            return 1;
+        } else if (a.year < b.year) {
+            return -1;
+        } else {
+            return 0;
+        }
+    });
 
-    }
-    array = moviesArray;
-    return array.sort();
+    const array = moviesANO.sort((a, b) => {
+        if (a.year === b.year) {
+            return moviesANO.sort((c, d) => {
+                if (c.title > d.title) {
+                    return 1;
+                } else if (c.title < d.title) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            });
+        }
+        return 0;
+    });
+
+    return array;//funcionou no codePen - Dúvidas! :O
 }
 
 
