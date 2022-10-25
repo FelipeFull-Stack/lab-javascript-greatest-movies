@@ -92,33 +92,16 @@ function dramaMoviesScore(moviesArray) {
 // Iteration 5: Ordering by year - Order by year, ascending (in growing order)
 function orderByYear(moviesArray) {
     const moviesFilter = [...moviesArray];
+
     const moviesANO = moviesFilter.sort((a, b) => {
-        if (a.year > b.year) {
-            return 1;
-        } else if (a.year < b.year) {
-            return -1;
-        } else {
-            return 0;
-        }
-    });
-
-    const array = moviesANO.sort((a, b) => {
         if (a.year === b.year) {
-            return moviesANO.sort((c, d) => {
-                if (c.title > d.title) {
-                    return 1;
-                } else if (c.title < d.title) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            });
+            return a.title.localeCompare(b.title);
         }
-        return 0;
-    });
+        return a.year - b.year;
+    })
 
-    return array;//funcionou no codePen - Dúvidas! :O
-}
+    return moviesANO;//funcionou no codePen - Dúvidas! :O
+}//resolvido
 
 
 
@@ -128,16 +111,14 @@ function orderAlphabetically(moviesArray) {
     const newMovies = [...moviesArray];
 
     const moviesFilter = newMovies.sort((a, b) => b.score - a.score);
-    //Devia retornar em ordem do MAIOR para o MENOR com base no SCORE
-    let str = "";
-    let array = [];
 
-    for (let i = 0; i < moviesFilter.length && i < 20; i++) {
-        str = moviesFilter[i].title;
-        array[i] = str;
+    const array = moviesFilter.map((currentTitle) => currentTitle.title);
+    let newArray = [];
+    array.sort();
+    for (let i = 0; i < 20 && i < array.length; i++) {
+        newArray[i] = array[i];
     }
-
-    return array.sort();
+    return newArray;
 }
 
 
@@ -210,12 +191,12 @@ function turnHoursToMinutes(moviesArray) {
         moviesDuration = [], value = 0;
         stringNumber = 0;
     }
-    const newArray = newMovies.map((currentDuration)=>{
-        return {...currentDuration, duration: x};
+    const newArray = newMovies.map((currentDuration) => {
+        return { ...currentDuration, duration: x };
     });
 
     return newArray[index];
-}
+}//Você ja falou com o professor, vai fazer o outro LAB!!!
 
 
 
