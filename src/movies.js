@@ -123,25 +123,20 @@ function orderByYear(moviesArray) {
 
 
 
-function teste(a, b) {
-    return b - a;
-}
-
 // Iteration 6: Alphabetic Order - Order by title and print the first 20 titles
 function orderAlphabetically(moviesArray) {
-    let array = [], array2 = [];
+    const newMovies = [...moviesArray];
+
+    const moviesFilter = newMovies.sort((a, b) => b.score - a.score);
+//Devia retornar em ordem do MAIOR para o MENOR com base no SCORE
     let str = "";
-    let cont = 0;
-    for (let i = 0; i < moviesArray.length; i++) {
-        str = moviesArray[i].title;
+    let array = [];
+
+    for (let i = 0; i < moviesFilter.length && i < 20; i++) {
+        str = moviesFilter[i].title;
         array[i] = str;
     }
-    if (moviesArray.length > 20) {
-        for (let i = 0; i < 20; i++) {
-            array2[i] = moviesArray[i].title;
-        }
-        return array2;
-    }
+
     return array.sort();
 }
 
